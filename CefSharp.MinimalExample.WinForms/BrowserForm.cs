@@ -73,6 +73,8 @@ namespace CefSharp.MinimalExample.WinForms
 
         private void OnBrowserAddressChanged(object sender, AddressChangedEventArgs args)
         {
+            classGetDataFromFB fb = new classGetDataFromFB();
+            
             this.InvokeOnUiThreadIfRequired(() => urlTextBox.Text = args.Address);
         }
 
@@ -165,5 +167,7 @@ namespace CefSharp.MinimalExample.WinForms
         {
             browser.ShowDevTools();
         }
+
+   
     }
 }
