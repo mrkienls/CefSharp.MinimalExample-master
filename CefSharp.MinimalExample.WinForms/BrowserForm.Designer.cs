@@ -45,7 +45,6 @@
             this.toolStripContainer.TopToolStripPanel.SuspendLayout();
             this.toolStripContainer.SuspendLayout();
             this.toolStrip1.SuspendLayout();
-            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripContainer
@@ -141,7 +140,11 @@
             this.goButton.Click += new System.EventHandler(this.GoButtonClick);
             // 
             // menuStrip1
-
+            // 
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(730, 24);
+            this.menuStrip1.TabIndex = 1;
             // 
             // fileToolStripMenuItem
             // 
@@ -185,8 +188,6 @@
             this.toolStripContainer.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 

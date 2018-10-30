@@ -11,7 +11,7 @@ namespace CefSharp.MinimalExample.WinForms
     {
 
         public classGetDataFromFB() {
-            MessageBox.Show("ok");
+          //  MessageBox.Show("ok");
         }
 
         #region properties

@@ -72,6 +72,7 @@
     </Compile>
     <Compile Include="classGetDataFromFB.cs" />
     <Compile Include="Controls\ControlExtensions.cs" />
+    <Compile Include="MyRequestHandler.cs" />
     <Compile Include="Program.cs">
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -80,6 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ThamKhao.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="BrowserForm.resx">

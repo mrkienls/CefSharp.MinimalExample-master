@@ -6,6 +6,10 @@ using System;
 using System.Windows.Forms;
 using CefSharp.MinimalExample.WinForms.Controls;
 using CefSharp.WinForms;
+using System.IO;
+using System.Security.Cryptography.X509Certificates;
+using System.Text.RegularExpressions;
+using System.Text;
 
 namespace CefSharp.MinimalExample.WinForms
 {
@@ -23,6 +27,7 @@ namespace CefSharp.MinimalExample.WinForms
             browser = new ChromiumWebBrowser("www.google.com")
             {
                 Dock = DockStyle.Fill,
+                RequestHandler = new MyRequestHandler() 
             };
             toolStripContainer.ContentPanel.Controls.Add(browser);
 
@@ -40,7 +45,7 @@ namespace CefSharp.MinimalExample.WinForms
 
         private void OnIsBrowserInitializedChanged(object sender, IsBrowserInitializedChangedEventArgs e)
         {
-            if(e.IsBrowserInitialized)
+            if (e.IsBrowserInitialized)
             {
                 var b = ((ChromiumWebBrowser)sender);
 
@@ -74,7 +79,7 @@ namespace CefSharp.MinimalExample.WinForms
         private void OnBrowserAddressChanged(object sender, AddressChangedEventArgs args)
         {
             classGetDataFromFB fb = new classGetDataFromFB();
-            
+
             this.InvokeOnUiThreadIfRequired(() => urlTextBox.Text = args.Address);
         }
 
@@ -168,6 +173,9 @@ namespace CefSharp.MinimalExample.WinForms
             browser.ShowDevTools();
         }
 
-   
+
     }
+
+    
+
 }
