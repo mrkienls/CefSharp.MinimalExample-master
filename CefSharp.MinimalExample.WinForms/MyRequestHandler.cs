@@ -8,12 +8,48 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using WordsMatching;
 
+
 namespace CefSharp.MinimalExample.WinForms
 {
     class MyRequestHandler: IRequestHandler
     {
         static string user_id = "";
+        static string content="";
+        static string path_image = "";
+        int haveImage=99;   //  99 macdinh;  0 la ko co anh;  1 la co anh
         // get html face
+
+
+        public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
+        {
+            if (request.Method == "POST" && request.Url.Contains("facebook.com/webgraphql"))
+             {
+                content = classGetDataFromFB.get_content(request);
+                haveImage = classGetDataFromFB.HaveImage(request);
+            }
+
+            if (request.Method == "POST" && request.Url.Contains("upload.facebook.com/ajax/react_composer/attachments"))
+            {
+                path_image = classGetDataFromFB.get_path_image(request);
+              
+            }
+
+            if ( content!= "" && haveImage!=99)
+            {
+                class_Post2Xenz.post_xenzu(content, path_image, "nguyenthuylinhls", "cstd1234");
+                content = "";
+                path_image = "";
+                haveImage = 99;
+            }    
+
+            //    https://stackoverflow.com/questions/42536262/how-to-use-image-from-embedded-resource-with-cefsharp
+        }
+
+
+
+
+        #region KHONGDUNG
+
 
         private static async void get_cookies()
         {
@@ -61,42 +97,6 @@ namespace CefSharp.MinimalExample.WinForms
 
             return html;
         }
-
-        public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
-        {
-            // You can also check the request URL here
-
-            string path_image = "";
-            if (request.Method == "POST" && request.Url.Contains("upload.facebook.com/ajax/react_composer/attachments"))
-            {
-                path_image = request.PostData.Elements[1].File;
-                path_image = "x";
-            }
-
-                if (request.Method == "POST" && request.Url.Contains("facebook.com/webgraphql"))
-             {
-               var rst = classGetDataFromFB.GetContentRequest_WhenPost(request);
-                MessageBox.Show(rst[0] + " " + rst[1] + rst[2]);
-            }
-            //    https://stackoverflow.com/questions/42536262/how-to-use-image-from-embedded-resource-with-cefsharp
-        }
-
-        #region KHONGDUNG
-        public bool GetAuthCredentials(IWebBrowser browserControl, IBrowser browser, IFrame frame, bool isProxy, string host, int port, string realm, string scheme, IAuthCallback callback)
-        {
-            return false;
-        }
-
-        public bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect)
-        {
-            if (request.Method == "POST")
-            {
-                //MessageBox.Show("ok");
-            }
-            // You can check the Request object for the URL Here
-            return false;
-        }
-
         public CefReturnValue OnBeforeResourceLoad(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IRequestCallback callback)
         {
 
@@ -108,18 +108,18 @@ namespace CefSharp.MinimalExample.WinForms
 
 
                 //var a = request;
-                var file = request.PostData.Elements[0].Bytes;
+                //var file = request.PostData.Elements[0].Bytes;
 
                 //MemoryStream memstr = new MemoryStream(file1);
                 //Image img = Image.FromStream(memstr);
                 //img.Save("D:\\ok.jpg");
-                string s = Encoding.UTF8.GetString(file, 0, file.Length);
+                //string s = Encoding.UTF8.GetString(file, 0, file.Length);
                 ////  post_xenzu("face",file);
                 ////   MessageBox.Show("ok");
                 // MessageBox.Show("ok");
 
-                user_id = Regex.Match(s, "user=(\\d+)").Groups[1].Value;
-                string content = Regex.Match(s, "text(.+)ranges").Groups[1].Value;
+                //user_id = Regex.Match(s, "user=(\\d+)").Groups[1].Value;
+                //string content = Regex.Match(s, "text(.+)ranges").Groups[1].Value;
 
                 //doi 50s roi goi ham nay de lay duong dan anh
 
@@ -153,6 +153,20 @@ namespace CefSharp.MinimalExample.WinForms
             return CefReturnValue.Continue;
         }
 
+        public bool GetAuthCredentials(IWebBrowser browserControl, IBrowser browser, IFrame frame, bool isProxy, string host, int port, string realm, string scheme, IAuthCallback callback)
+        {
+            return false;
+        }
+
+        public bool OnBeforeBrowse(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, bool isRedirect)
+        {
+            if (request.Method == "POST")
+            {
+                //MessageBox.Show("ok");
+            }
+            // You can check the Request object for the URL Here
+            return false;
+        }
 
         public bool OnCertificateError(IWebBrowser browserControl, IBrowser browser, CefErrorCode errorCode, string requestUrl, ISslInfo sslInfo, IRequestCallback callback)
         {
@@ -256,3 +270,4 @@ namespace CefSharp.MinimalExample.WinForms
         #endregion
     }
 }
+

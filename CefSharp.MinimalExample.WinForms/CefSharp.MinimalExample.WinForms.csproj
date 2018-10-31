@@ -56,11 +56,16 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="RestSharp, Version=106.5.4.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.5.4\lib\net452\RestSharp.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
   <ItemGroup>
@@ -71,6 +76,7 @@
       <DependentUpon>BrowserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="classGetDataFromFB.cs" />
+    <Compile Include="class_Post2Xenz.cs" />
     <Compile Include="CompareStringBestSimilar\AssemblyInfo.cs" />
     <Compile Include="CompareStringBestSimilar\BipartiteMatcher.cs" />
     <Compile Include="CompareStringBestSimilar\ISimilarity.cs" />
