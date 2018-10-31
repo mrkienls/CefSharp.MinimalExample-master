@@ -6,6 +6,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
+
 namespace CefSharp.MinimalExample.WinForms
 {
     static public class classGetDataFromFB
@@ -23,17 +24,19 @@ namespace CefSharp.MinimalExample.WinForms
         static public string[] GetContentRequest_WhenPost(IRequest request) 
 
         {
-            string[] data = {"","" };
+            string[] data = {"","","" };
         
             var file = request.PostData.Elements[0].Bytes;
-            string s = Encoding.UTF8.GetString(file, 0, file.Length);
-
+         //   string s = Uri.UnescapeDataString(Encoding.UTF8.GetString(file, 0, file.Length));
+            string s =Encoding.UTF8.GetString(file, 0, file.Length);
             // user_id
-            data[0] = Regex.Match(s, "user=(\\d+)").Groups[1].Value;
+            data[0] = (Regex.Match(s, "user=(\\d+)").Groups[1].Value);
             // content
             data[1] = Regex.Match(s, "text(.+)ranges").Groups[1].Value;
-            data[1] = "time stamp";
+            data[2] = Regex.Match(s, "22id(.+)tags").Groups[1].Value;
             return data;
+
+            
         }
 
 
