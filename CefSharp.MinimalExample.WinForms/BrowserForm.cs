@@ -24,9 +24,10 @@ namespace CefSharp.MinimalExample.WinForms
         {
             InitializeComponent();
 
-        
 
-            Text = "CefSharp";
+
+            // Text = "CefSharp";
+            Text = "FBtoOther";
             WindowState = FormWindowState.Maximized;
 
             browser = new ChromiumWebBrowser("www.facebook.com")
@@ -186,6 +187,17 @@ namespace CefSharp.MinimalExample.WinForms
         private void toolStripContainer_ContentPanel_Load(object sender, EventArgs e)
         {
 
+        }
+
+        private void BrowserForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BrowserForm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+         
+            Cef.Shutdown();
         }
     }
 
