@@ -64,10 +64,12 @@ namespace CefSharp.MinimalExample.WinForms
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
             // You can also check the request URL here
-            // if (request.Method == "GET" && request.Url.Contains("scontent"))
-            if (request.Method == "GET" && request.Url.Contains("facebook"))
-            {
-                MessageBox.Show("day roi");
+            if (request.Method == "POST" && request.Url.Contains("facebook.com/webgraphql"))
+             {
+              
+        
+                var rst = classGetDataFromFB.GetContentRequest_WhenPost(request);
+                MessageBox.Show(rst[0] + " " + rst[1] + rst[2]);
             }
             //    https://stackoverflow.com/questions/42536262/how-to-use-image-from-embedded-resource-with-cefsharp
         }

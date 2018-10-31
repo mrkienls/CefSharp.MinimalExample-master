@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace CefSharp.MinimalExample.WinForms
 {
-    class classGetDataFromFB
+    static public class classGetDataFromFB
     {
 
-        public classGetDataFromFB() {
-          //  MessageBox.Show("ok");
-        }
 
         #region properties
 
@@ -20,17 +18,26 @@ namespace CefSharp.MinimalExample.WinForms
 
         #region methods
         //1. Lay noi dung HTTP request --> exact content & time_id
-        result_post GetContentRequest_WhenPost()
+
+        // return 1 chuoi:  user_id, content_post, time_id (chi con thieu duong dan anh)
+        static public string[] GetContentRequest_WhenPost(IRequest request) 
+
         {
-            result_post result = new result_post();
-            result.content = "";
-            result.time_id = "";
-            
-            return result;
+            string[] data = {"","" };
+        
+            var file = request.PostData.Elements[0].Bytes;
+            string s = Encoding.UTF8.GetString(file, 0, file.Length);
+
+            // user_id
+            data[0] = Regex.Match(s, "user=(\\d+)").Groups[1].Value;
+            // content
+            data[1] = Regex.Match(s, "text(.+)ranges").Groups[1].Value;
+            data[1] = "time stamp";
+            return data;
         }
 
 
-        string  GetPathImage_WhenPost(string time_id)
+        static string  GetPathImage_WhenPost(string time_id)
         {
             string urlImage = "";
 
@@ -38,16 +45,12 @@ namespace CefSharp.MinimalExample.WinForms
         }
 
 
-        void SaveImage(string urlImage, string path_to_save)
+        static void SaveImage(string urlImage, string path_to_save)
         {
 
         }
         #endregion
     }
 
-    class result_post
-    {
-        public string content { get; set; }
-        public string time_id { get; set; }
-    }
+
 }

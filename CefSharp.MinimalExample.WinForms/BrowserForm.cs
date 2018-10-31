@@ -24,7 +24,7 @@ namespace CefSharp.MinimalExample.WinForms
             Text = "CefSharp";
             WindowState = FormWindowState.Maximized;
 
-            browser = new ChromiumWebBrowser("www.google.com")
+            browser = new ChromiumWebBrowser("www.facebook.com")
             {
                 Dock = DockStyle.Fill,
                 RequestHandler = new MyRequestHandler() 
@@ -78,7 +78,7 @@ namespace CefSharp.MinimalExample.WinForms
 
         private void OnBrowserAddressChanged(object sender, AddressChangedEventArgs args)
         {
-            classGetDataFromFB fb = new classGetDataFromFB();
+        //    classGetDataFromFB fb = new classGetDataFromFB();
 
             this.InvokeOnUiThreadIfRequired(() => urlTextBox.Text = args.Address);
         }
@@ -173,7 +173,15 @@ namespace CefSharp.MinimalExample.WinForms
             browser.ShowDevTools();
         }
 
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
 
+        }
+
+        private void toolStripContainer_ContentPanel_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 
     

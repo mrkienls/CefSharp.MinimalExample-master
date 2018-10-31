@@ -55,6 +55,7 @@
             this.toolStripContainer.ContentPanel.Controls.Add(this.statusLabel);
             this.toolStripContainer.ContentPanel.Controls.Add(this.outputLabel);
             this.toolStripContainer.ContentPanel.Size = new System.Drawing.Size(730, 441);
+            this.toolStripContainer.ContentPanel.Load += new System.EventHandler(this.toolStripContainer_ContentPanel_Load);
             this.toolStripContainer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.toolStripContainer.LeftToolStripPanelVisible = false;
             this.toolStripContainer.Location = new System.Drawing.Point(0, 24);
@@ -145,6 +146,7 @@
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(730, 24);
             this.menuStrip1.TabIndex = 1;
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -158,14 +160,14 @@
             // showDevToolsToolStripMenuItem
             // 
             this.showDevToolsToolStripMenuItem.Name = "showDevToolsToolStripMenuItem";
-            this.showDevToolsToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.showDevToolsToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.showDevToolsToolStripMenuItem.Text = "Show DevTools";
             this.showDevToolsToolStripMenuItem.Click += new System.EventHandler(this.ShowDevToolsMenuItemClick);
             // 
             // exitToolStripMenuItem
             // 
             this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
-            this.exitToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(155, 22);
             this.exitToolStripMenuItem.Text = "Exit";
             this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitMenuItemClick);
             // 
