@@ -71,6 +71,12 @@
       <DependentUpon>BrowserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="classGetDataFromFB.cs" />
+    <Compile Include="CompareStringBestSimilar\AssemblyInfo.cs" />
+    <Compile Include="CompareStringBestSimilar\BipartiteMatcher.cs" />
+    <Compile Include="CompareStringBestSimilar\ISimilarity.cs" />
+    <Compile Include="CompareStringBestSimilar\Leven.cs" />
+    <Compile Include="CompareStringBestSimilar\MatchsMaker.cs" />
+    <Compile Include="CompareStringBestSimilar\Tokeniser.cs" />
     <Compile Include="Controls\ControlExtensions.cs" />
     <Compile Include="MyRequestHandler.cs" />
     <Compile Include="Program.cs">

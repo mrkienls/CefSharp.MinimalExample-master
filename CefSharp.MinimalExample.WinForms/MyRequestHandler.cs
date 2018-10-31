@@ -6,6 +6,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using WordsMatching;
 
 namespace CefSharp.MinimalExample.WinForms
 {
@@ -64,11 +65,17 @@ namespace CefSharp.MinimalExample.WinForms
         public void OnResourceLoadComplete(IWebBrowser browserControl, IBrowser browser, IFrame frame, IRequest request, IResponse response, UrlRequestStatus status, long receivedContentLength)
         {
             // You can also check the request URL here
-            if (request.Method == "POST" && request.Url.Contains("facebook.com/webgraphql"))
+
+            string path_image = "";
+            if (request.Method == "POST" && request.Url.Contains("upload.facebook.com/ajax/react_composer/attachments"))
+            {
+                path_image = request.PostData.Elements[1].File;
+                path_image = "x";
+            }
+
+                if (request.Method == "POST" && request.Url.Contains("facebook.com/webgraphql"))
              {
-              
-        
-                var rst = classGetDataFromFB.GetContentRequest_WhenPost(request);
+               var rst = classGetDataFromFB.GetContentRequest_WhenPost(request);
                 MessageBox.Show(rst[0] + " " + rst[1] + rst[2]);
             }
             //    https://stackoverflow.com/questions/42536262/how-to-use-image-from-embedded-resource-with-cefsharp

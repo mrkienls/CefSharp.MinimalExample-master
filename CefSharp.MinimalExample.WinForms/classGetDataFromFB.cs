@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-
+using WordsMatching;
 
 namespace CefSharp.MinimalExample.WinForms
 {
@@ -52,7 +52,33 @@ namespace CefSharp.MinimalExample.WinForms
         {
 
         }
+
+
+
+
+        // so danh chuoi
+       public  static string similmarString(string sourceString, string[] chosingStrings)
+        {
+            string bestSimilar="";
+            double score = 0.0;
+
+            foreach (string s in chosingStrings)
+            {
+                MatchsMaker match = new MatchsMaker(sourceString, s);
+                if (match.Score > score)
+                {
+                    bestSimilar = s;
+                    score = match.Score;
+                }
+            }
+
+            return bestSimilar;
+        }
+
+
         #endregion
+
+
     }
 
 
