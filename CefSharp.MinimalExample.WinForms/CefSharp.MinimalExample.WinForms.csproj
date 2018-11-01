@@ -91,6 +91,7 @@
       <DependentUpon>BrowserForm.cs</DependentUpon>
     </Compile>
     <Compile Include="classGetDataFromFB.cs" />
+    <Compile Include="Class_Login.cs" />
     <Compile Include="class_Post2Xenz.cs" />
     <Compile Include="CompareStringBestSimilar\AssemblyInfo.cs" />
     <Compile Include="CompareStringBestSimilar\BipartiteMatcher.cs" />
@@ -107,6 +108,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
     <Compile Include="System\Web\HttpUtility.cs" />
   </ItemGroup>
@@ -125,6 +131,10 @@
     <None Include="app.config" />
     <None Include="app.manifest" />
     <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
     <None Include="Resources\nav_left_green.png" />
   </ItemGroup>
   <ItemGroup>

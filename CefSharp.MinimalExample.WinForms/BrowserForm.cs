@@ -24,9 +24,11 @@ namespace CefSharp.MinimalExample.WinForms
         {
             InitializeComponent();
 
+            // kiem tra dang nhap
+            Class_Login.CheckLogin();
 
 
-            // Text = "CefSharp";
+
             Text = "FBtoOther";
             WindowState = FormWindowState.Maximized;
 
